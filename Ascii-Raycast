@@ -1,0 +1,165 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include <fstream>
+#include <sstream>
+#include <new>
+
+
+class Map{	
+	public:
+		int size_x = 10;
+		int size_y = 10;
+		bool layer_wall[10][10];
+		bool layer_vis[10][10];
+
+		void initMap(){
+			for(int x = 0; x < size_x; x++){
+				for(int y = 0; y < size_y; y++){
+					layer_wall[x][y] = false;
+					layer_vis[x][y] = true;
+				}
+			}
+		}
+		
+		void drawMap(){
+			std::cout << std::endl << ". 0 1 2 3 4 5 6 7 8 9 " << std::endl;
+			for(int y = 0; y < size_y; y++){
+				std::cout << y << " ";
+				for(int x = 0; x < size_x; x++){
+					if(layer_wall[x][y] == true){
+						std::cout << "# ";
+					}else if(layer_vis[x][y] == false){
+						std::cout << "? ";
+					}else{
+						std::cout << ". ";	
+					}	
+				}
+				std::cout << std::endl;
+			}
+		}
+	//endpublic
+};
+class Tracer{
+	//false when and ONLY when you can't move, like at finish.
+	public:
+		int point_x;
+		int point_y;
+		int target_x;
+		int target_y;
+		bool approach(){
+			int toTarget_x, toTarget_y;
+			int xMov = 0, yMov = 0;//moves left!
+			toTarget_x = abs(point_x - target_x);
+			toTarget_y = abs(point_y - target_y);
+			//if targets are on diagonal, skip the memory part
+			if(toTarget_x == toTarget_y){
+				if(toTarget_x == 0 || toTarget_y == 0){
+					return false;
+				}
+				
+				//side walking in a straight line logic
+				if(point_x > target_x){
+					point_x--;
+				}else{
+					point_x++;
+				}
+				if(point_y > target_y){
+					point_y--;
+				}else{
+					point_y++;
+				}
+				return true;
+
+			}
+			if(xMov == 0 && yMov == 0){
+				float a = (float)toTarget_x; 
+				float b = (float)toTarget_y;
+				float c = 0;
+				if(toTarget_x > toTarget_y){
+					c = a / b;
+					xMov = (int)c;
+					yMov = toTarget_x % toTarget_y;
+				}else{
+					yMov = (int)(b / a);
+					xMov = toTarget_y % toTarget_x;
+				}
+			}
+			//using its memory
+			if(xMov != 0 || yMov != 0){
+				if(xMov == yMov){
+					if(point_x > target_x){
+						point_x--;
+					}else{
+						point_x++;
+					}
+					if(point_y > target_y){
+						point_y--;
+					}else{
+						point_y++;
+					}
+					xMov--;
+					yMov--;
+					return true;
+				}
+				if(xMov > yMov){
+					if(point_x > target_x){
+						point_x--;
+					}else{
+						point_x++;
+					}
+					xMov--;
+					return true;
+				}
+				if(yMov > xMov){
+					if(point_y > target_y){
+						point_y--;
+					}else{
+						point_y++;
+					}
+					yMov--;
+					return true;
+				}
+
+			}			
+			return false;
+		}
+	//end public.
+};
+int main(){
+	Tracer ray;
+	Map map;
+
+	int a,b;
+
+	std::cout << "|====INPUT====| X | Y |" << std::endl;
+	std::cout << "player position: ";
+	std::cin >> a >> b;		
+	
+	ray.point_x = a;
+	ray.point_y = b;
+	
+	map.initMap();
+	for(int x = 0; x < map.size_x; x++){
+		for(int y = 0; y < map.size_y; y++){
+			ray.target_x = x;
+			ray.target_y = y;
+			std::cout << x << " " << y 
+			<< " : isWall=" << map.layer_wall[x][y] 
+			<< " isVis=" << map.layer_vis[x][y] << std::endl;
+
+			while(ray.approach() == true){
+				if(map.layer_wall[ray.point_x][ray.point_y] == true){
+					map.layer_vis[x][y] = false;
+					break;
+				}
+			}
+			std::cout << x << " " << y 
+			<< " : isWall=" << map.layer_wall[x][y] 
+			<< " isVis=" << map.layer_vis[x][y] << std::endl;
+		}
+	}
+	map.drawMap();		
+
+	return 0;
+}
