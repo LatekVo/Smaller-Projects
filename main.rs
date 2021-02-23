@@ -83,7 +83,6 @@ fn main(){
      *   0 1 2
      */
     
-    //AHH Ignacy, REMEBER! This is not a full game, its just a proof of concept!
     //No threads yet, wait for rusty-caves
     
     //+1 -1 makes map smaller but saves shit ton of computational power
