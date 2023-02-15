@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przyciski</title>
+    <script src="main.js"></script>
+    <style>
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 15vh;
+        }
+        button {
+            background-color: seashell;
+
+            border-width: 1px;
+
+            margin: 1vw;
+            padding: 1vw;
+
+            height: 5vh;
+
+            transition: all 80ms;
+        }
+
+        button:hover {
+            background-color: rgb(255, 247, 241);
+        }
+
+        button:active {
+            background-color: bisque;
+        }
+
+        #editArea {
+            display: flex;
+            padding: 0 10vw 0 10vw;
+        }
+        .editElement {
+            background-color: seashell;
+
+            border-style: solid;
+            border-width: 1px;
+
+            padding: 2.5vw;
+            margin: 2.5vw;
+
+            height: 50vh;
+            overflow: hidden;
+
+            cursor: pointer;
+            user-select: none;
+
+            transition: all 200ms;
+        }
+
+        .editElement:hover {
+            background-color: rgb(255, 247, 241);
+        }
+
+        .target {
+            background-color: bisque !important;
+        }
+    </style>
+</head>
+<body onload="initialize()">
+    <header>
+        <button id="sizeUp">Czcionka +</button>
+        <button id="sizeDown">Czcionka -</button>
+        <button id="colorRandom">Zmień kolor czcionki</button>
+        <button id="backgroundRandom">Zmień kolor tła</button>
+        <button id="editableAdd">Dodaj element/button>
+        <button id="editableRemove">Usuń element</button>
+
+    </header>
+    <div id="editArea">
+        <div class="editElement" data-font-size="12">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt earum pariatur velit eligendi, quod error minima quo voluptatum quaerat modi sapiente quidem eos quam. Aspernatur atque eaque dolores deleniti, recusandae, obcaecati nemo, totam illo consequatur dicta aliquid unde quis magni odit molestias ullam autem. Delectus, a! Ab atque est fugiat, odit ut accusantium neque similique sunt asperiores fugit in culpa ratione rem placeat eum facilis ipsum consequatur ad necessitatibus vel praesentium porro repudiandae quis hic. Quae consequuntur reprehenderit deserunt aliquid fugiat, tempora rem nihil recusandae, quis ab optio eos! Beatae eligendi distinctio reprehenderit maiores, similique cumque blanditiis non id quo, et omnis excepturi! Officia, error quae! Culpa saepe laboriosam eos cupiditate? Culpa illum sapiente reprehenderit quis quaerat numquam excepturi voluptas, et sunt atque in. Porro minus eius modi quisquam voluptatibus dolorum cum! Cupiditate, quibusdam inventore tenetur reiciendis maiores aliquid voluptatibus soluta vel, modi omnis facilis voluptatem laboriosam voluptas, facere dicta.
+        </div>
+    </div>
+</body>
+</html>
