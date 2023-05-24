@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placek</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+
+            background-color: black;
+        }
+        #base-container {
+            position: absolute;
+            left: 50vw;
+            transform: translateX(-50%);
+
+            aspect-ratio: 1 / 1;
+            height: 100vh;
+
+            background-color: crimson;
+
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        #toggler {
+            position: absolute;
+            right: 80px;
+            bottom: 80px;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            opacity: 0%;
+            transition: opacity 1s, background-color 0.5s;
+        }
+        #toggler:hover {
+            opacity: 100%;
+        }
+        .red {
+            background-color: red !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="base-container"></div>
+    <div id="toggler"></div>
+    <script>
+        let clamp = (value) => {
+            if (value > 0xff)
+                return 0xff;
+            if (value < 0)
+                return 0;
+            return value;
+        }
+                
+        let rng = (opacity = 1.) => {
+            return Math.floor(Math.random()*0xff*opacity);
+        }
+
+        let clickEvent = (event) => {
+            let child = document.createElement('div');
+
+            let color = [220, 20, 60];
+
+            let children = Array(4).fill(child.cloneNode());
+
+            children.map(() => {
+                let newColor = color.map(x => clamp(x + rng(0.25) - rng(0.25)).toString(16));
+                console.log(`#${newColor.join('')}`);
+                child.style.backgroundColor = `#${newColor.join('')}`;
+                event.target.appendChild(child.cloneNode());
+            });
+        };
+
+        let toggle = (event) => {
+            event.target.classList.toggle('red')
+        }
+
+        document.getElementById('base-container').addEventListener('mousedown', clickEvent);
+        document.getElementById('toggler').addEventListener('mousedown', toggle);
+    </script>
+</body>
+</html>
