@@ -20,7 +20,7 @@
             border-width: 1px;
 
             margin: 1vw;
-            padding: 1vw;
+            padding: 0 1vw 0 1vw;
 
             height: 5vh;
 
@@ -29,10 +29,12 @@
 
         button:hover {
             background-color: rgb(255, 247, 241);
+            box-shadow: 1px 1px black;
         }
 
         button:active {
             background-color: bisque;
+            box-shadow: -1px -1px black !important;
         }
 
         #editArea {
@@ -40,7 +42,8 @@
             padding: 0 10vw 0 10vw;
         }
         .editElement {
-            background-color: seashell;
+            color: black;
+            background-color: bisque;
 
             border-style: solid;
             border-width: 1px;
@@ -54,15 +57,19 @@
             cursor: pointer;
             user-select: none;
 
-            transition: all 200ms;
+            transition: all 200ms, box-shadow 300ms ease-in-out;
+
+            opacity: 0.8;
         }
 
         .editElement:hover {
-            background-color: rgb(255, 247, 241);
+            opacity: 0.7;
+            box-shadow: 2px 2px black;
         }
 
         .target {
-            background-color: bisque !important;
+            box-shadow: 5px 5px black !important;
+            opacity: 1 !important;
         }
     </style>
 </head>
@@ -72,12 +79,10 @@
         <button id="sizeDown">Czcionka -</button>
         <button id="colorRandom">Zmień kolor czcionki</button>
         <button id="backgroundRandom">Zmień kolor tła</button>
-        <button id="editableAdd">Dodaj element/button>
-        <button id="editableRemove">Usuń element</button>
-
+        <button id="editableAdd">Dodaj element</button>
     </header>
     <div id="editArea">
-        <div class="editElement" data-font-size="12">
+        <div class="editElement" data-font-size="15">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt earum pariatur velit eligendi, quod error minima quo voluptatum quaerat modi sapiente quidem eos quam. Aspernatur atque eaque dolores deleniti, recusandae, obcaecati nemo, totam illo consequatur dicta aliquid unde quis magni odit molestias ullam autem. Delectus, a! Ab atque est fugiat, odit ut accusantium neque similique sunt asperiores fugit in culpa ratione rem placeat eum facilis ipsum consequatur ad necessitatibus vel praesentium porro repudiandae quis hic. Quae consequuntur reprehenderit deserunt aliquid fugiat, tempora rem nihil recusandae, quis ab optio eos! Beatae eligendi distinctio reprehenderit maiores, similique cumque blanditiis non id quo, et omnis excepturi! Officia, error quae! Culpa saepe laboriosam eos cupiditate? Culpa illum sapiente reprehenderit quis quaerat numquam excepturi voluptas, et sunt atque in. Porro minus eius modi quisquam voluptatibus dolorum cum! Cupiditate, quibusdam inventore tenetur reiciendis maiores aliquid voluptatibus soluta vel, modi omnis facilis voluptatem laboriosam voluptas, facere dicta.
         </div>
     </div>
